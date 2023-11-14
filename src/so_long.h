@@ -3,6 +3,7 @@
 #include "../minilibx/mlx.h"
 #include "../libft/libft.h"
 #include "stdlib.h"
+#include "unistd.h"
 
 typedef struct s_point {
 	int	x;
@@ -11,8 +12,8 @@ typedef struct s_point {
 
 typedef struct s_map {
 
-	int				rows;
-	int				columns;
+	int				height;
+	int				width;
 	int				collectibles;
 	int				exit;
 	int				player;
@@ -27,10 +28,17 @@ typedef struct	s_game
 
 }	t_game;
 
+typedef  struct program_settings
+{
+	char *map_file;
+} p_settings;
 
 void map(t_game *game, char *argv);
 char	**ft_create_map(char **map, int count, char *file);
 t_game 	*game(void);
+int simp_strlen(char *str);
+int map_checker(void);
+
 
 
 

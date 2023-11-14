@@ -4,7 +4,7 @@ CFLAGS = -I/usr/include -Iminilibx -O3
 
 LIBFT = libft/libft.a
 
-SRC = src/main.c src/map_processing.c
+SRC = src/main.c src/map_processing.c src/utils.c src/map_checks.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
