@@ -14,27 +14,30 @@ static	void	flood_fill(int x, int y, char **map)
 	flood_fill(x, y - 1, map);
 }
 
-int flood_fill_check(void)
+int	flood_fill_check(void)
 {
-	char **map_cpy;
-	game()->map_sets.f_exit = 0;
-	printf("map copying");
-	map_cpy = copy_map();
-	printf("map copied");
-	flood_fill(game()->map_sets.player_pos.x, game()->map_sets.player_pos.y, map_cpy);
-	if(game()->map_sets.f_exit == 0)
-	{
-		//TODO : CHANGE TO EXIT MESSAGE
-		printf("Exit not accessible");
-		return 0;
-	}
-	else if(game()->map_sets.f_collectibles != game()->map_sets.collectibles)
-	{
-		//TODO: CHANGE TO EXIT MESSAGE
-		printf("COLLETIBLES NOT ACCESSIBLE");
-		return 0;
-	}
+	char	**map_cpy;
 
+	game()->map_sets.f_exit = 0;
+	map_cpy = copy_map();
+	flood_fill(game()->map_sets.player_pos.x, game()->map_sets.player_pos.y, map_cpy);
+	if (game()->map_sets.f_exit == 0)
+	{
+		ft_exit("Exit not accessible");
+		return (0);
+	}
+	else if (game()->map_sets.f_collectibles != game()->map_sets.collectibles)
+	{
+		ft_exit("COLLETIBLES NOT ACCESSIBLE");
+		return (0);
+	}
 	free_map_copy(map_cpy);
-	return 1;
+	return (1);
+}
+
+void ft_exit(const char *error_message)
+{
+	//write(1, error_message, ft_strlen(error_message));
+	//write(1, "\n", 1);
+	exit(0);
 }

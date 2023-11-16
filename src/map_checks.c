@@ -90,7 +90,7 @@ int	map_checker(void)
 	//printf("WALLS :%i\n", check_walls());
 
 
-	printf("map checker");
+
 	if (is_rectangular() && check_walls() && elements_validation())
 	{
 		if(flood_fill_check())

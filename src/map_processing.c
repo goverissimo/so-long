@@ -46,7 +46,7 @@ void map(t_game *game, char *argv)
 
 	fd = open(argv, O_RDONLY);
 	add_line(fd, 0);
-	ft_print_map();
+	//ft_print_map();
 	printf("\n CHECKER: %i", map_checker());
 	close(fd);
 }

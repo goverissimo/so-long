@@ -5,6 +5,9 @@
 #include "stdlib.h"
 #include "unistd.h"
 
+
+#define PIXELS 64
+
 typedef struct s_point {
 	int	x;
 	int	y;
@@ -30,19 +33,23 @@ typedef struct	s_game
 
 }	t_game;
 
-typedef  struct program_settings
-{
-	char *map_file;
-} p_settings;
+typedef struct t_usrwindow{
+	void	*mlx_ptr;
+	void	*win_ptr;
+
+}t_window;
 
 void map(t_game *game, char *argv);
 char	**ft_create_map(char **map, int count, char *file);
 t_game 	*game(void);
+t_window	*window(void);
 int simp_strlen(char *str);
 int map_checker(void);
 char **copy_map(void);
 void free_map_copy(char **map_copy);
 int flood_fill_check(void);
+void ft_exit(const char *error_message);
+void	window_init(void);
 
 
 #endif

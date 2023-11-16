@@ -1,5 +1,7 @@
 #include "so_long.h"
 
+
+
 int simp_strlen(char *str)
 {
 	int i;
