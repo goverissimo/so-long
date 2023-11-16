@@ -63,18 +63,18 @@ static	int elements_validation(void)
 		while(j < game()->map_sets.width)
 		{
 			temp = game()->map[i][j];
+
 			if(temp != '0' && temp != '1' && temp != 'C' && temp != 'E' && temp !='P')
 				return (0);
 			else if(temp == 'P')
 			{
-				game()->map_sets.player_pos.x = j;
-				game()->map_sets.player_pos.y = i;
 				game()->map_sets.player += 1;
+				game()->map_sets.player_pos.y = i;
+
+				game()->map_sets.player_pos.x = j;
 			}
-			else if ( temp == 'C')
-				game()->map_sets.collectibles += 1;
-			else if (temp == 'E')
-				game()->map_sets.exit += 1;
+				game()->map_sets.collectibles += ( temp == 'C');
+				game()->map_sets.exit += (temp == 'E');
 			j++;
 		}
 		i++;
@@ -82,9 +82,19 @@ static	int elements_validation(void)
 	return (1);
 }
 
+
 int	map_checker(void)
 {
+	//printf("RECTANGULAR :%i\n", is_rectangular());
+	//printf("VALIDATION :%i\n", elements_validation());
+	//printf("WALLS :%i\n", check_walls());
+
+
+	printf("map checker");
 	if (is_rectangular() && check_walls() && elements_validation())
-		return (1);
+	{
+		if(flood_fill_check())
+			return (1);
+	}
 	return (0);
 }

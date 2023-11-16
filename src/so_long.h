@@ -15,7 +15,9 @@ typedef struct s_map {
 	int				height;
 	int				width;
 	int				collectibles;
+	int				f_collectibles;
 	int				exit;
+	int				f_exit;
 	int				player;
 	t_point			player_pos;
 }				t_map;
@@ -38,8 +40,9 @@ char	**ft_create_map(char **map, int count, char *file);
 t_game 	*game(void);
 int simp_strlen(char *str);
 int map_checker(void);
-
-
+char **copy_map(void);
+void free_map_copy(char **map_copy);
+int flood_fill_check(void);
 
 
 #endif
