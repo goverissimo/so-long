@@ -36,7 +36,12 @@ typedef struct	s_game
 typedef struct t_usrwindow{
 	void	*mlx_ptr;
 	void	*win_ptr;
-
+	void	*wall;
+	void	*floor;
+	void	*collectible;
+	void	*exit;
+	void	*enemy;
+	void	*player[8];
 }t_window;
 
 void map(t_game *game, char *argv);
@@ -50,6 +55,7 @@ void free_map_copy(char **map_copy);
 int flood_fill_check(void);
 void ft_exit(const char *error_message);
 void	window_init(void);
-
-
+void	add_images(void);
+void	load_images(int i, int j);
+void	load_map(void);
 #endif

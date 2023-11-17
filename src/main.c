@@ -24,28 +24,19 @@ static void print_map_info(void)
 	printf("Collectibles: %d\n", game()->map_sets.collectibles);
 	printf("Exit count: %d\n", game()->map_sets.exit);
 	printf("Player count: %d\n", game()->map_sets.player);
-	printf("Player Position: (X: %d, Y: %d)\n", game()->map_sets.player_pos.x, game()->map_sets.player_pos.y);
+	printf("Player Position: (X: %d, Y: %d)\n", (game())->map_sets.player_pos.x, (game())->map_sets.player_pos.y);
 }
 
 
 int main(int argc, char **argv)
 {
-	t_game *game;
-	t_window *window;
-//	game = malloc(sizeof(t_game));
-//	if (!game) {
-//		perror("Failed to allocate memory for game");
-//		return 1;
-//	}
 	if(argc == 2)
 	{
-		map(game, argv[1]);
+		map(game(), argv[1]);
 		print_map_info();
 	}
 	window_init();
-	//printf("%s", argv[1]);
-	//printf("%i", game->map_sets.rows);
-	mlx_loop(window->mlx_ptr);
+	mlx_loop(window()->mlx_ptr);
 	return 0;
 }
 
