@@ -48,3 +48,27 @@ void free_map_copy(char **map_copy)
 	}
 	free(map_copy);
 }
+void clean(void)
+{
+	int i;
+	i = 1;
+	mlx_destroy_image(window()->mlx_ptr, window()->exit);
+	//mlx_destroy_image(window()->mlx_ptr, window()->enemy);
+	mlx_destroy_image(window()->mlx_ptr, window()->wall);
+
+	while (i < 2)
+	{
+		mlx_destroy_image(window()->mlx_ptr, window()->p[i]);
+		i++;
+	}
+	i=0;
+	while (i < 2)
+	{
+		mlx_destroy_image(window()->mlx_ptr, window()->rp[i]);
+		i++;
+	}
+	mlx_destroy_window(window()->mlx_ptr, window()->win_ptr);
+	mlx_destroy_display(window()->mlx_ptr);
+	free(window()->mlx_ptr);
+	free_map_copy(game()->map);
+}

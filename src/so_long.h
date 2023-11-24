@@ -4,9 +4,19 @@
 #include "../libft/libft.h"
 #include "stdlib.h"
 #include "unistd.h"
-
-
+#include <X11/X.h>
+#include <X11/keysymdef.h>
 #define PIXELS 64
+
+# define KEY_W				119
+# define KEY_A				97
+# define KEY_S				115
+# define KEY_D				100
+
+# define KEY_UP  			65362
+# define KEY_LEFT  			65361
+# define KEY_RIGHT 			65363
+# define KEY_DOWN  			65364
 
 typedef struct s_point {
 	int	x;
@@ -22,6 +32,8 @@ typedef struct s_map {
 	int				exit;
 	int				f_exit;
 	int				player;
+	int				direction;
+	int 			frame;
 	t_point			player_pos;
 }				t_map;
 
@@ -29,6 +41,7 @@ typedef struct s_map {
 typedef struct	s_game
 {
 	char			**map;
+	char			**map_cpy;
 	t_map		map_sets;
 
 }	t_game;
@@ -38,13 +51,18 @@ typedef struct t_usrwindow{
 	void	*win_ptr;
 	void	*wall;
 	void	*floor;
+	void	*gvoid;
 	void	*collectible;
 	void	*exit;
 	void	*enemy;
-	void	*player[8];
+	void	*player;
+	void	*p[2];
+	void	*rp[2];
 }t_window;
 
-void map(t_game *game, char *argv);
+
+void movement(int x_offset, int y_offset);
+void map(char *argv);
 char	**ft_create_map(char **map, int count, char *file);
 t_game 	*game(void);
 t_window	*window(void);
@@ -58,4 +76,7 @@ void	window_init(void);
 void	add_images(void);
 void	load_images(int i, int j);
 void	load_map(void);
+void redraw_game_state(void);
+int key_hook(int keycode);
+void clean(void);
 #endif

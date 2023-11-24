@@ -32,10 +32,18 @@ int main(int argc, char **argv)
 {
 	if(argc == 2)
 	{
-		map(game(), argv[1]);
+		map(argv[1]);
+		map_checker();
 		print_map_info();
+
+//		if (game()->map_sets.width <= 0 || game()->map_sets.height <= 0) {
+//			printf("Invalid map dimensions.\n");
+//			return 1;
+//		}
+
 	}
 	window_init();
+	mlx_key_hook(window()->win_ptr, key_hook, NULL);
 	mlx_loop(window()->mlx_ptr);
 	return 0;
 }

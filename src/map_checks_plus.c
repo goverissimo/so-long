@@ -4,7 +4,8 @@ static	void	flood_fill(int x, int y, char **map)
 {
 	if (x < 0 || y < 0 || x >= game()->map_sets.width || \
 	y >= game()->map_sets.height || map[y][x] == '1')
-		return ;
+		return;
+
 	game()->map_sets.f_collectibles += (map[y][x] == 'C');
 	game()->map_sets.f_exit += (map[y][x] == 'E');
 	map[y][x] = '1';
