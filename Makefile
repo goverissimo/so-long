@@ -1,6 +1,6 @@
 NAME = so_long
-CC = gcc
-CFLAGS = -I/usr/include -Iminilibx -O3
+CC = cc
+CFLAGS = -I/usr/include -Iminilibx -O3 -g
 
 LIBFT = libft/libft.a
 

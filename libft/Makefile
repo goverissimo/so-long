@@ -61,8 +61,11 @@ BONUS_OBJS		= $(BONUS:.c=.o)
 GNL= $(PATH_SRC)get_next_line.c
 OBJ_GNL = $(GNL:.c=.o)
 
-$(NAME): $(OBJ) $(OBJ_GNL)
-	ar rc $(NAME) $(OBJ) $(OBJ_GNL)
+PRINTF= $(PATH_SRC)ft_printf.c ft_printf_ptr.c ft_printf_utils.c
+OBJ_PRINTF = $(PRINTF:.c=.o)
+
+$(NAME): $(OBJ) $(OBJ_GNL) $(OBJ_PRINTF)
+	ar rc $(NAME) $(OBJ) $(OBJ_GNL) $(OBJ_PRINTF)
 	ranlib $(NAME)
 
 bonus:			$(OBJS) $(BONUS_OBJS)
