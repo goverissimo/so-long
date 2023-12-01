@@ -1,6 +1,6 @@
 NAME = so_long
-CC = gcc
-CFLAGS = -I/usr/include -Iminilibx -O3
+CC = cc
+CFLAGS = -I/usr/include -Iminilibx -O3 -g
 
 LIBFT = libft/libft.a
 
@@ -10,7 +10,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) $(LIBFT) -Lminilibx -lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -Lminilibx -lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -o $(NAME) 
 
 $(LIBFT):
 	make -C ./libft

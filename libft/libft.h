@@ -6,7 +6,7 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:45:51 by gverissi          #+#    #+#             */
-/*   Updated: 2023/10/04 18:33:21 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:20:45 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include "get_next_line.h"
+# include "ft_printf.h"
 # define INT_MI -2147483648
 # define INT_MA 2147483648
 

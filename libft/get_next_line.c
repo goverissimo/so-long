@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl.c                                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 22:02:02 by gverissi          #+#    #+#             */
-/*   Updated: 2023/06/05 22:32:41 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:33:35 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_read_st_save(int fd, char *st_save)
 	while (!ft_strchr(st_save, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
-		if (read_bytes == -1)
+		if (read_bytes == -1 || read_bytes)
 		{
 			free(buff);
 			free(st_save);

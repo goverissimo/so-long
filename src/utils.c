@@ -1,39 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/27 17:00:58 by gverissi          #+#    #+#             */
+/*   Updated: 2023/12/01 21:10:34 by gverissi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-
-
-int simp_strlen(char *str)
+size_t simp_strlen(char *str)
 {
-	int i;
+	size_t i;
 	i = 0;
-	while (str[i] && str[i] != '\n' && str[i] != ' ')
+	if(!str)
+		return 0;
+	while (str[i] != '0' && str[i] != '\n' && str[i])
 		i++;
 	return (i);
 }
 
-char **copy_map(void)
+void copy_map(void)
 {
 	char **map_cpy;
 	int i;
-
-	map_cpy = malloc(sizeof(char *) * game()->map_sets.height);
-	if(!map_cpy)
-		return 0;
+	int j;
+	j = 0;
+	game()->map_f = malloc(sizeof(char *)*(game()->map_sets.height + 1));
+	game()->map_cpy = malloc(sizeof(char *)*(game()->map_sets.height + 1));
+	if(!game()->map_cpy || !game()->map_f)
+		return ;
 	i = 0;
 	while (i < game()->map_sets.height)
 	{
-		map_cpy[i] = ft_strdup(game()->map[i]);
-
-		if(!map_cpy[i])
-		{
-			while (i--)
-				free(map_cpy[i]);
-			free(map_cpy);
-			return NULL;
-		}
+		game()->map_cpy[i] = ft_strdup(game()->map[i]);
+		game()->map_f[i] = ft_strdup(game()->map[i]);
 		i++;
 	}
-	return map_cpy;
+	game()->map_cpy[i] = NULL;
+	game()->map_f[i] = NULL;
+	
 }
 
 void free_map_copy(char **map_copy)
@@ -41,34 +50,11 @@ void free_map_copy(char **map_copy)
 	int i;
 
 	i = 0;
-	while(i < game()->map_sets.height)
+	while(map_copy[i])
 	{
-		free(map_copy[i]);
-		i++;
+		free(map_copy[i++]);
 	}
 	free(map_copy);
 }
-void clean(void)
-{
-	int i;
-	i = 1;
-	mlx_destroy_image(window()->mlx_ptr, window()->exit);
-	//mlx_destroy_image(window()->mlx_ptr, window()->enemy);
-	mlx_destroy_image(window()->mlx_ptr, window()->wall);
 
-	while (i < 2)
-	{
-		mlx_destroy_image(window()->mlx_ptr, window()->p[i]);
-		i++;
-	}
-	i=0;
-	while (i < 2)
-	{
-		mlx_destroy_image(window()->mlx_ptr, window()->rp[i]);
-		i++;
-	}
-	mlx_destroy_window(window()->mlx_ptr, window()->win_ptr);
-	mlx_destroy_display(window()->mlx_ptr);
-	free(window()->mlx_ptr);
-	free_map_copy(game()->map);
-}
+
