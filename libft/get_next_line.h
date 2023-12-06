@@ -6,7 +6,7 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:50:51 by gverissi          #+#    #+#             */
-/*   Updated: 2023/06/09 17:46:12 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:49:26 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "libft.h"
+
 char	*get_next_line(int fd);
 char	*ft_st_save(char *st_save);
 char	*ft_read_st_save(int fd, char *save);
-
-
-
 #endif

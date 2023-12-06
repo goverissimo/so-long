@@ -6,7 +6,7 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:20 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/01 21:17:50 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:00:26 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static int	is_rectangular(void)
 {
 	int	i;
-	int temp;
-	int j;
+	int	temp;
+	int	j;
 
 	j = 0;
 	temp = 0;
-	while(j < game()->map_sets.height)
+	while (j < game()->map_sets.height)
 	{
-		if(game()->map[j][0] == '\n')
+		if (game()->map[j][0] == '\n')
 			return (0);
 		j++;
 	}
@@ -70,56 +70,59 @@ static int	check_walls(void)
 	return (1);
 }
 
-static int check_temp(char temp, int i, int j)
+static int	check_temp(char temp, int i, int j)
 {
-	if(temp != '0' && temp != '1' && temp != 'C' && temp != 'E' && temp != 'P') {
-				ft_exit("Unrecognized Character in map");
-				return (0);
-			}
-			else if(temp == 'P')
-			{
-				game()->map_sets.player += 1;
-				game()->map_sets.player_pos.y = i;
-				game()->map_sets.player_pos.x = j;
-			}
-	game()->map_sets.collectibles += ( temp == 'C');
+	if (temp != '0' && temp != '1' && temp != 'C' && temp != 'E' && temp != 'P')
+	{
+		ft_exit ("Unrecognized Character in map");
+		return (0);
+	}
+	else if (temp == 'P')
+	{
+		game()->map_sets.player += 1;
+		game()->map_sets.player_pos.y = i;
+		game()->map_sets.player_pos.x = j;
+	}
+	game()->map_sets.collectibles += (temp == 'C');
 	game()->map_sets.exit += (temp == 'E');
 	return (1);
 }
 
-static	int elements_validation(void)
+static int	elements_validation(void)
 {
-	int i;
-	int j;
-	char temp;
+	int		i;
+	int		j;
+	char	temp;
 
 	i = 0;
-	while(i < game()->map_sets.height)
+	while (i < game()->map_sets.height)
 	{
 		j = 0;
-		while(j < game()->map_sets.width)
+		while (j < game()->map_sets.width)
 		{
 			temp = game()->map[i][j];
-			if(check_temp(temp, i, j) == 0)
+			if (check_temp(temp, i, j) == 0)
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	if(game()->map_sets.player != 1 || game()->map_sets.exit != 1 || game()->map_sets.collectibles == 0 || game()->map_sets.bots > 1)
+	if (game()->map_sets.player != 1 || game()->map_sets.exit != 1 || \
+	game()->map_sets.collectibles == 0 || game()->map_sets.bots > 1)
 		return (0);
 	return (1);
 }
 
-
-int	map_checker(void)
+void	map_checker(void)
 {
 	copy_map();
 	game()->map_sets.width = simp_strlen(game()->map[0]);
-	if (is_rectangular() && check_walls() && elements_validation())
-	{
-		if(flood_fill_check())
-			return (1);
-	}
-	return (0);
+	if (!is_rectangular())
+		ft_exit("Not rectangular");
+	if (!check_walls())
+		ft_exit("walls not in correct place");
+	if (!elements_validation())
+		ft_exit("Prohibited elements/ missing elements!");
+	if (!flood_fill_check())
+		ft_exit("flood_fill failed!");
 }

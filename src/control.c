@@ -6,13 +6,13 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:03 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/01 21:24:43 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:43:59 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static	void	adios(void)
+static	void	cleaner(void)
 {
 	if (window())
 	{
@@ -55,11 +55,19 @@ int	key_hook(int keycode)
 	else if (keycode == ESC_KEY)
 	{
 		ft_printf("Game finished!\n");
-		adios();
+		cleaner();
 	}
 	return (0);
 }
 
+static	void	change_pos(int x, int y)
+{
+	game()->map[game()->map_sets.player_pos.y][game()->map_sets.player_pos.x] \
+	= '0';
+	game()->map_sets.player_pos.x = x;
+	game()->map_sets.player_pos.y = y;
+	game()->map[y][x] = 'P';
+}
 
 void	movement(int x_offset, int y_offset)
 {
@@ -79,15 +87,11 @@ void	movement(int x_offset, int y_offset)
 	if (game()->map[new_y][new_x] == 'E' && game()->map_sets.collectibles == 0)
 	{
 		ft_printf("%s", "YOU WON\n");
-		adios();
+		cleaner();
 	}
 	else if (game()->map[new_y][new_x] == 'E' && game()->map_sets.collectibles \
 	!= 0)
 		return ;
-	game()->map[game()->map_sets.player_pos.y][game()->map_sets.player_pos.x] \
-	= '0';
-	game()->map_sets.player_pos.x = new_x;
-	game()->map_sets.player_pos.y = new_y;
-	game()->map[new_y][new_x] = 'P';
+	change_pos(new_x, new_y);
 	load_map();
 }

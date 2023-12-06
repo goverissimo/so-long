@@ -6,7 +6,7 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:45:51 by gverissi          #+#    #+#             */
-/*   Updated: 2023/11/27 16:20:45 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:49:32 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define INT_MA 2147483648
 
 typedef unsigned int	t_u32;
-
 
 long	ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);

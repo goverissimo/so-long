@@ -6,12 +6,11 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:04:29 by gverissi          #+#    #+#             */
-/*   Updated: 2023/11/27 16:26:02 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:48:47 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int	ft_write_ptr(unsigned long ptr)
 {

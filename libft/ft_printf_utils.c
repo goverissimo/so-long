@@ -6,13 +6,14 @@
 /*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:16:44 by gverissi          #+#    #+#             */
-/*   Updated: 2023/11/27 16:26:20 by gverissi         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:49:02 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_putstr_fds(char *s, int fd) {
+int	ft_putstr_fds(char *s, int fd)
+{
 	int	c;
 
 	if (!s || fd < 0)

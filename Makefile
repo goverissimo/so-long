@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/06 12:02:08 by gverissi          #+#    #+#              #
+#    Updated: 2023/12/06 12:11:59 by gverissi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 CC = cc
-CFLAGS = -I/usr/include -Iminilibx -O3 -g
+CFLAGS = -I/usr/include -Iminilibx -O3 
 
 LIBFT = libft/libft.a
 
