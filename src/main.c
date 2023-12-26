@@ -31,13 +31,13 @@ int	main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-		game()->map_sets.direction = 1;
-		game()->map_sets.frame = 1;
 		map(argv[1]);
 		map_checker();
 		window_init();
 		mlx_key_hook(window()->win_ptr, key_hook, window());
-		mlx_loop(window()->mlx_ptr);
+        mlx_hook(window()->win_ptr, 17, 0, ft_exit_wrapper, window());
+
+        mlx_loop(window()->mlx_ptr);
 	}
 	else
 		ft_exit("Please enter 2 arguments");

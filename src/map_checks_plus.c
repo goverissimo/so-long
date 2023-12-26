@@ -54,3 +54,9 @@ void	ft_exit(const char *error_message)
 		free_map_copy(game()->map_f);
 	exit (0);
 }
+
+int ft_exit_wrapper(void)
+{
+    ft_exit("X pressed");
+    return (0);
+}

@@ -21,8 +21,11 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(OBJ) $(LIBFT) -Lminilibx -lmlx_Linux -L/usr/lib -Iminilibx -lXext -lX11 -lm -lz -o $(NAME) 
+$(MLX):
+	make -C ./minilibx
+
+$(NAME): $(OBJ) $(LIBFT) $(MLX)
+	$(CC) $(OBJ) $(LIBFT) -Lminilibx -lmlx -L/usr/lib -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 	make -C ./libft

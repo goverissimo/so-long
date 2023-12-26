@@ -37,19 +37,13 @@ static	void	cleaner(void)
 
 int	key_hook(int keycode)
 {
-	game()->map_sets.movements += 1;
+
 	if (keycode == KEY_W || keycode == KEY_UP)
 		movement(0, -1);
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
-	{
-		game()->map_sets.direction = 1;
 		movement(1, 0);
-	}
 	else if (keycode == KEY_LEFT || keycode == KEY_A)
-	{
-		game()->map_sets.direction = -1;
 		movement(-1, 0);
-	}
 	else if (keycode == KEY_DOWN || keycode == KEY_S)
 		movement(0, 1);
 	else if (keycode == ESC_KEY)
@@ -62,6 +56,7 @@ int	key_hook(int keycode)
 
 static	void	change_pos(int x, int y)
 {
+    game()->map_sets.movements += 1;
 	game()->map[game()->map_sets.player_pos.y][game()->map_sets.player_pos.x] \
 	= '0';
 	game()->map_sets.player_pos.x = x;

@@ -70,6 +70,7 @@ void	load_images(int i, int j)
 	else if (game()->map[i][j] == '0' && game()->map_cpy[i][j] == '1')
 		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
 		window()->gvoid, j * 64, i * 64);
+    //mlx_do_sync(window()->win_ptr);
 	display_movement_count();
 }
 

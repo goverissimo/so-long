@@ -45,9 +45,6 @@ typedef struct s_map {
 	int				f_exit;
 	int				player;
 	int				bots;
-	t_point			enemy;
-	int				direction;
-	int				frame;
 	int				movements;
 	t_point			player_pos;
 }				t_map;
@@ -68,7 +65,6 @@ typedef struct t_usrwindow{
 	void	*gvoid;
 	void	*collectible;
 	void	*exit;
-	void	*enemy1;
 	void	*p;
 }	t_window;
 
@@ -87,9 +83,7 @@ void		window_init(void);
 void		add_images(void);
 void		load_images(int i, int j);
 void		load_map(void);
-void		redraw_game_state(void);
 int			key_hook(int keycode);
-void		clean(void);
 void		add_line(int fd);
-int			bot_anim(void);
+int         ft_exit_wrapper(void);
 #endif
