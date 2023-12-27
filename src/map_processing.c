@@ -19,6 +19,13 @@ static	int	valid_ext(char *map_file)
 	return (0);
 }
 
+static	void	clean(char **temp, char *line)
+{
+	free(line);
+	free(temp);
+	ft_exit ("remove newlines before running the project");
+}
+
 void	add_line(int fd)
 {
 	char	*line;
@@ -26,7 +33,7 @@ void	add_line(int fd)
 	char	**temp_lines;
 	int		i;
 
-	i = 0;
+	i = -1;
 	height = 0;
 	temp_lines = ft_calloc(1000, sizeof(char *));
 	line = get_next_line(fd);
@@ -34,18 +41,17 @@ void	add_line(int fd)
 	{
 		temp_lines[height++] = line;
 		if (temp_lines[height - 1][0] == '\n')
-			ft_exit ("remove newlines before running the project");
+			clean(temp_lines, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 	game()->map = malloc(sizeof(char *) * (height + 1)); 
-	while (i < height)
-	{
+	while (i++ < height)
 		game()->map[i] = temp_lines[i];
-		i++;
-	}
 	game()->map[height] = NULL;
 	game()->map_sets.height = height;
 	free(temp_lines); 
+	free(line);
 }
 
 void	map(char *argv)

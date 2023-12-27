@@ -12,7 +12,7 @@
 
 NAME = so_long
 CC = cc
-CFLAGS = -I/usr/include -Iminilibx -O3 
+CFLAGS = -Wall -Werror -Wextra -I/usr/include -Iminilibx -O3 
 
 LIBFT = libft/libft.a
 

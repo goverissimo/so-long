@@ -85,5 +85,6 @@ void		load_images(int i, int j);
 void		load_map(void);
 int			key_hook(int keycode);
 void		add_line(int fd);
-int         ft_exit_wrapper(void);
+int			ft_exit_wrapper(void);
+void		cleaner(void);
 #endif

@@ -26,11 +26,8 @@ size_t	simp_strlen(char *str)
 
 void	copy_map(void)
 {
-	char	**map_cpy;
 	int		i;
-	int		j;
 
-	j = 0;
 	game()->map_f = malloc(sizeof(char *) * (game()->map_sets.height + 1));
 	game()->map_cpy = malloc(sizeof(char *) * (game()->map_sets.height + 1));
 	if (!game()->map_cpy || !game()->map_f)

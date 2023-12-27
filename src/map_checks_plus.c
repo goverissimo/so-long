@@ -55,8 +55,9 @@ void	ft_exit(const char *error_message)
 	exit (0);
 }
 
-int ft_exit_wrapper(void)
+int	ft_exit_wrapper(void)
 {
-    ft_exit("X pressed");
-    return (0);
+	ft_printf("X pressed");
+	cleaner();
+	return (0);
 }

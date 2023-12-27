@@ -35,9 +35,8 @@ int	main(int argc, char **argv)
 		map_checker();
 		window_init();
 		mlx_key_hook(window()->win_ptr, key_hook, window());
-        mlx_hook(window()->win_ptr, 17, 0, ft_exit_wrapper, window());
-
-        mlx_loop(window()->mlx_ptr);
+		mlx_hook(window()->win_ptr, 17, 0, ft_exit_wrapper, window());
+		mlx_loop(window()->mlx_ptr);
 	}
 	else
 		ft_exit("Please enter 2 arguments");

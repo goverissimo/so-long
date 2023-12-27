@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static	void	cleaner(void)
+void	cleaner(void)
 {
 	if (window())
 	{
@@ -37,7 +37,6 @@ static	void	cleaner(void)
 
 int	key_hook(int keycode)
 {
-
 	if (keycode == KEY_W || keycode == KEY_UP)
 		movement(0, -1);
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
@@ -56,7 +55,7 @@ int	key_hook(int keycode)
 
 static	void	change_pos(int x, int y)
 {
-    game()->map_sets.movements += 1;
+	game()->map_sets.movements += 1;
 	game()->map[game()->map_sets.player_pos.y][game()->map_sets.player_pos.x] \
 	= '0';
 	game()->map_sets.player_pos.x = x;
