@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void	cleaner(void)
+static	void	cleaner(void)
 {
 	if (window())
 	{
@@ -20,7 +20,6 @@ void	cleaner(void)
 		mlx_destroy_image(window()->mlx_ptr, window()->exit);
 		mlx_destroy_image(window()->mlx_ptr, window()->wall);
 		mlx_destroy_image(window()->mlx_ptr, window()->gvoid);
-		mlx_destroy_image(window()->mlx_ptr, window()->floor);
 		mlx_destroy_image(window()->mlx_ptr, window()->p);
 		mlx_destroy_window(window()->mlx_ptr, window()->win_ptr);
 		mlx_destroy_display(window()->mlx_ptr);
@@ -78,14 +77,12 @@ void	movement(int x_offset, int y_offset)
 		game()->map_cpy[new_y][new_x] = '1';
 	if (game()->map[new_y][new_x] == 'C')
 		game()->map_sets.collectibles--;
-	if (game()->map[new_y][new_x] == 'E' && game()->map_sets.collectibles == 0)
+	if (game()->map_cpy[new_y][new_x] == 'E' && \
+	game()->map_sets.collectibles == 0)
 	{
 		ft_printf("%s", "YOU WON\n");
 		cleaner();
 	}
-	else if (game()->map[new_y][new_x] == 'E' && game()->map_sets.collectibles \
-	!= 0)
-		return ;
 	change_pos(new_x, new_y);
 	load_map();
 }

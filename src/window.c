@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:01:13 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:30:34 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:46:48 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,48 +46,42 @@ void	add_images(void)
 	"./sprites/exit.xpm", &i, &i);
 	(window()->gvoid) = mlx_xpm_file_to_image(window()->mlx_ptr, \
 	"./sprites/black.xpm", &i, &i);
-	(window()->floor) = mlx_xpm_file_to_image(window()->mlx_ptr, \
-	"./sprites/dot_small.xpm", &i, &i);
 }
 
-void	load_images(int i, int j)
+void	*choose_image(char map_char, char map_cpy_char)
 {
-	if (game()->map[i][j] == '1')
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->wall, j * 64, i * 64);
-	else if (game()->map[i][j] == 'C')
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->collectible, j * 64, i * 64);
-	else if (game()->map[i][j] == 'P')
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->p, j * 64, i * 64);
-	else if (game()->map[i][j] == 'E' && game()->map_sets.collectibles == 0)
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->exit, j * 64, i * 64);
-	else if (game()->map[i][j] == '0' && game()->map_cpy[i][j] == '0')
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->floor, j * 64, i * 64);
-	else if (game()->map[i][j] == '0' && game()->map_cpy[i][j] == '1')
-		mlx_put_image_to_window (window()->mlx_ptr, window()->win_ptr, \
-		window()->gvoid, j * 64, i * 64);
-	display_movement_count();
+	if (map_char == '1')
+		return (window()->wall);
+	if (map_char == 'C')
+		return (window()->collectible);
+	if (map_cpy_char == 'E')
+	{
+		if (game()->map_sets.collectibles == 0)
+			return (window()->exit);
+		else
+			return (window()->gvoid);
+	}
+	return (window()->gvoid);
 }
 
 void	load_map(void)
 {
-	int	i;
-	int	j;
+	t_img	buffer;
+	int		i;
+	int		j;
 
+	buffer = init_img(window()->mlx_ptr, game()->map_sets.width * \
+	PIXELS, game()->map_sets.height * PIXELS);
 	i = 0;
-	mlx_clear_window (window()->mlx_ptr, window()->win_ptr);
 	while (i < game()->map_sets.height)
 	{
-		j = 0;
-		while (j < game()->map_sets.width)
-		{
-			load_images(i, j);
-			j++;
-		}
+		j = -1;
+		while (++j < game()->map_sets.width)
+			load_images(&buffer, i, j);
 		i++;
 	}
+	mlx_put_image_to_window(window()->mlx_ptr, window()->win_ptr, \
+	buffer.img, 0, 0);
+	display_movement_count();
+	mlx_destroy_image(window()->mlx_ptr, buffer.img);
 }

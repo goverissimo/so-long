@@ -12,11 +12,11 @@
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I/usr/include -Iminilibx -O3 
+CFLAGS = -I/usr/include -Iminilibx -O3 
 
 LIBFT = libft/libft.a
 
-SRC = src/main.c src/map_processing.c src/utils.c src/map_checks.c src/map_checks_plus.c src/window.c src/control.c
+SRC = src/main.c src/map_processing.c src/utils.c src/map_checks.c src/map_checks_plus.c src/window.c src/control.c src/buff_img.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

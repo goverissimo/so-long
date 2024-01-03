@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:33:17 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/06 14:00:45 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:48:13 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/libft.h"
 # include "stdlib.h"
 # include "unistd.h"
+# include <stdint.h>
 # include <X11/X.h>
 # include <X11/keysymdef.h>
 # include <sys/time.h>
@@ -68,6 +69,15 @@ typedef struct t_usrwindow{
 	void	*p;
 }	t_window;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}	t_img;
+
 void		movement(int x_offset, int y_offset);
 void		map(char *argv);
 char		**ft_create_map(char **map, int count, char *file);
@@ -81,10 +91,14 @@ int			flood_fill_check(void);
 void		ft_exit(const char *error_message);
 void		window_init(void);
 void		add_images(void);
-void		load_images(int i, int j);
+t_img		init_img(void *mlx_ptr, int width, int height);
+uint32_t	get_pixel(t_img *img, int x, int y);
+void		put_pixel(t_img *img, int x, int y, uint32_t color);
+t_img		init_img(void *mlx_ptr, int width, int height);
+void		load_images(t_img *buffer, int i, int j);
 void		load_map(void);
 int			key_hook(int keycode);
 void		add_line(int fd);
 int			ft_exit_wrapper(void);
-void		cleaner(void);
+void		*choose_image(char map_char, char map_cpy_char);
 #endif
