@@ -6,22 +6,32 @@
 /*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 17:42:48 by gverissi          #+#    #+#             */
-/*   Updated: 2024/01/03 17:46:12 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:42:11 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-uint32_t	get_pixel(t_img *img, int x, int y)
+void	get_pixel(t_img *img, int x, int y, unsigned char color[4])
 {
-	return (*(uint32_t *)(img->addr + (y * img->line_length + x * \
-	(img->bpp / 8))));
+	int	pixel;
+
+	pixel = y * img->line_length + x * (img->bpp / 8);
+	color[0] = img->addr[pixel];
+	color[1] = img->addr[pixel + 1];
+	color[2] = img->addr[pixel + 2];
+	color[3] = img->addr[pixel + 3];
 }
 
-void	put_pixel(t_img *img, int x, int y, uint32_t color)
+void	put_pixel(t_img *img, int x, int y, unsigned char color[4])
 {
-	*(uint32_t *)(img->addr + (y * img->line_length + x * \
-	(img->bpp / 8))) = color;
+	int	pixel;
+
+	pixel = y * img->line_length + x * (img->bpp / 8);
+	img->addr[pixel] = color[0];
+	img->addr[pixel + 1] = color[1];
+	img->addr[pixel + 2] = color[2];
+	img->addr[pixel + 3] = color[3];
 }
 
 t_img	init_img(void *mlx_ptr, int width, int height)
@@ -39,9 +49,9 @@ t_img	init_img(void *mlx_ptr, int width, int height)
 void	draw_image_to_buffer(t_img *src_img, t_img *buffer, \
 int start_x, int start_y)
 {
-	int			x;
-	int			y;
-	uint32_t	color;
+	int				x;
+	int				y;
+	unsigned char	color[4];
 
 	y = 0;
 	while (y < PIXELS)
@@ -49,7 +59,7 @@ int start_x, int start_y)
 		x = 0;
 		while (x < PIXELS)
 		{
-			color = get_pixel(src_img, x, y);
+			get_pixel(src_img, x, y, color);
 			put_pixel(buffer, start_x + x, start_y + y, color);
 			x++;
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:58 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:32:51 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:59:29 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ size_t	simp_strlen(char *str)
 
 void	copy_map(void)
 {
-	char	**map_cpy;
 	int		i;
 	int		j;
 
@@ -51,9 +50,14 @@ void	free_map_copy(char **map_copy)
 	int	i;
 
 	i = 0;
-	while (map_copy[i])
+	if (map_copy != NULL)
 	{
-		free (map_copy[i++]);
+		while (map_copy[i] != NULL)
+		{
+			free(map_copy[i]);
+			map_copy[i] = NULL;
+			i++;
+		}
+		free(map_copy);
 	}
-	free (map_copy);
 }

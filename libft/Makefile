@@ -58,7 +58,7 @@ BONUS = $(PATH_SRC)ft_lstadd_back.c\
 
 BONUS_OBJS		= $(BONUS:.c=.o)
 
-GNL= $(PATH_SRC)get_next_line.c
+GNL= $(PATH_SRC)get_next_line.c get_next_line_utils.c
 OBJ_GNL = $(GNL:.c=.o)
 
 PRINTF= $(PATH_SRC)ft_printf.c ft_printf_ptr.c ft_printf_utils.c

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:03 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:43:59 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:21:11 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static	void	cleaner(void)
+void	cleaner(void)
 {
 	if (window())
 	{

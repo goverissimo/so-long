@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks_plus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:36 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/06 14:00:36 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:22:40 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_exit(const char *error_message)
 
 int	ft_exit_wrapper(void)
 {
-	ft_exit("X pressed");
+	ft_printf("X PRESSED");
+	cleaner();
 	return (0);
 }

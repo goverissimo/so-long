@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 18:50:51 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:49:26 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:29:58 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "libft.h"
 
 char	*get_next_line(int fd);
-char	*ft_st_save(char *st_save);
-char	*ft_read_st_save(int fd, char *save);
+int		searchn(char *buff);
+char	*get_line(char *line, char *buff, int size);
+int		checkn(char *buffer);
 #endif

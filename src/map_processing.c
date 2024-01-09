@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_processing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gverissi <gverissi@student.42.com>         +#+  +:+       +#+        */
+/*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 17:00:47 by gverissi          #+#    #+#             */
-/*   Updated: 2023/12/04 14:47:45 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:54:11 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ static	int	valid_ext(char *map_file)
 	return (0);
 }
 
+static	void	free_temp_lines(char **lines, int count)
+{
+	int	i;
+
+	i = -1;
+	while (++i < count)
+		free(lines[i]);
+	free(lines);
+	ft_exit ("remove newlines before running the project");
+}
+
 void	add_line(int fd)
 {
 	char	*line;
@@ -26,7 +37,7 @@ void	add_line(int fd)
 	char	**temp_lines;
 	int		i;
 
-	i = 0;
+	i = -1;
 	height = 0;
 	temp_lines = ft_calloc(1000, sizeof(char *));
 	line = get_next_line(fd);
@@ -34,18 +45,16 @@ void	add_line(int fd)
 	{
 		temp_lines[height++] = line;
 		if (temp_lines[height - 1][0] == '\n')
-			ft_exit ("remove newlines before running the project");
+			free_temp_lines(temp_lines, height);
 		line = get_next_line(fd);
 	}
 	game()->map = malloc(sizeof(char *) * (height + 1)); 
-	while (i < height)
-	{
+	while (++i < height)
 		game()->map[i] = temp_lines[i];
-		i++;
-	}
 	game()->map[height] = NULL;
 	game()->map_sets.height = height;
-	free(temp_lines); 
+	free(temp_lines);
+	free(line);
 }
 
 void	map(char *argv)

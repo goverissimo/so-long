@@ -6,7 +6,7 @@
 /*   By: gverissi <gverissi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:33:17 by gverissi          #+#    #+#             */
-/*   Updated: 2024/01/03 17:48:13 by gverissi         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:48:38 by gverissi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void		ft_exit(const char *error_message);
 void		window_init(void);
 void		add_images(void);
 t_img		init_img(void *mlx_ptr, int width, int height);
-uint32_t	get_pixel(t_img *img, int x, int y);
-void		put_pixel(t_img *img, int x, int y, uint32_t color);
+void		get_pixel(t_img *img, int x, int y, unsigned char color[4]);
+void		put_pixel(t_img *img, int x, int y, unsigned char color[4]);
 t_img		init_img(void *mlx_ptr, int width, int height);
 void		load_images(t_img *buffer, int i, int j);
 void		load_map(void);
@@ -101,4 +101,5 @@ int			key_hook(int keycode);
 void		add_line(int fd);
 int			ft_exit_wrapper(void);
 void		*choose_image(char map_char, char map_cpy_char);
+void		cleaner(void);
 #endif
